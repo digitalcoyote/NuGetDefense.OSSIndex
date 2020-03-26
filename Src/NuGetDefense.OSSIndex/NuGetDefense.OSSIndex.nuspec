@@ -3,21 +3,21 @@
   <metadata>
     <id>NuGetDefense.OSSIndex</id>
     <title>NuGetDefense.OSSIndex</title>
-    <version>1.0.0</version>
+    <version>1.0.1.1</version>
     <authors>Curtis Carter</authors>
     <owners>Curtis Carter</owners>
     <projectUrl>https://github.com/DigitalCoyote/NuGetDefense</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>NuGetDefense.OSSIndex ~ a Rest Client for OSSIndex used by NuGetDefense</summary>
     <description>Provides logic to scan packages using OSSIndex</description>
-    <releaseNotes>https://github.com/digitalcoyote/NuGetDefense/releases</releaseNotes>
-    <repository type="git" url="https://github.com/digitalcoyote/NuGetDefense.git"/>
+    <releaseNotes>https://github.com/digitalcoyote/NuGetDefense.OSSIndex/releases</releaseNotes>
+    <repository type="git" url="https://github.com/digitalcoyote/NuGetDefense.OSSIndex.git"/>
     <license type="expression">MIT</license>
     <tags>Security</tags>
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="System.Text.Json" version="4.7.1" />        
-        <dependency id="NuGetDefense.Core" version="[1.0.0]" />
+        <dependency id="NuGetDefense.Core" version="[1.0.1.1]" />
       </group>
     </dependencies>
   </metadata>
