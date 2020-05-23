@@ -17,12 +17,14 @@ namespace NuGetDefense.OSSIndex
     {
         private const string ResponseContentType = "application/vnd.ossindex.component-report.v1+json";
         private const string RequestContentType = "application/vnd.ossindex.component-report-request.v1+json";
+        private readonly string UserAgentString;
 
 
-        public Scanner(string nugetFile, bool breakIfCannotRun = false)
+        public Scanner(string nugetFile, bool breakIfCannotRun = false, string userAgentString = @"NuGetDefense.OSSIndex/1.0.1.5 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)")
         {
             NugetFile = nugetFile;
             BreakIfCannotRun = breakIfCannotRun;
+            UserAgentString = userAgentString;
         }
 
         private string NugetFile { get; }
@@ -37,6 +39,7 @@ namespace NuGetDefense.OSSIndex
         {
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgentString);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ResponseContentType));
                 var response =
@@ -56,6 +59,7 @@ namespace NuGetDefense.OSSIndex
             using var client = new HttpClient();
             var content = JsonSerializer.Serialize(new ComponentReportRequest
                 {coordinates = pkgs.Select(p => p.PackageUrl).ToArray()});
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgentString);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ResponseContentType));
             var response = await client
