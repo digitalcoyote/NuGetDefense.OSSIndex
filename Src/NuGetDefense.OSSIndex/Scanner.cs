@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -62,11 +63,35 @@ namespace NuGetDefense.OSSIndex
             client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgentString);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ResponseContentType));
-            var response = await client
-                .PostAsync("https://ossindex.sonatype.org/api/v3/component-report",
-                    new StringContent(content, Encoding.UTF8, RequestContentType));
-            return await JsonSerializer.DeserializeAsync<ComponentReport[]>(response.Content.ReadAsStreamAsync().Result,
-                new JsonSerializerOptions());
+            try
+            {
+                var response = await client
+                    .PostAsync("https://ossindex.sonatype.org/api/v3/component-report",
+                        new StringContent(content, Encoding.UTF8, RequestContentType));
+                var jsonResponse = response.Content.ReadAsStreamAsync().Result;
+                try
+                {
+                    return await JsonSerializer.DeserializeAsync<ComponentReport[]>(jsonResponse,
+                        new JsonSerializerOptions());
+                }
+                catch
+                {
+                    using var ms = new MemoryStream();
+                    await jsonResponse.CopyToAsync(ms);
+                    var str = "No response";
+
+                    if (ms.Length > 0)
+                        str = Encoding.Default.GetString(ms.ToArray());
+
+                    Console.WriteLine($"Error Reading OSSIndex Response: '{str}'");
+                    throw;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception: '{e}'");
+                throw;
+            }
         }
 
         /// <summary>
@@ -93,7 +118,7 @@ namespace NuGetDefense.OSSIndex
             {
                 var reports = GetReportsForPackagesAsync(pkgs).Result
                     .Where(report => report.Vulnerabilities.Length > 0);
-                if (vulnDict == null) vulnDict = new Dictionary<string, Dictionary<string, Vulnerability>>();
+                vulnDict ??= new Dictionary<string, Dictionary<string, Vulnerability>>();
                 foreach (var report in reports)
                 {
                     var pkgId = pkgs.First(p => p.PackageUrl == report.Coordinates).Id;
