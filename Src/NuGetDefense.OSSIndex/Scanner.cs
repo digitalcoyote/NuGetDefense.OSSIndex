@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -68,6 +69,9 @@ namespace NuGetDefense.OSSIndex
                 var response = await client
                     .PostAsync("https://ossindex.sonatype.org/api/v3/component-report",
                         new StringContent(content, Encoding.UTF8, RequestContentType));
+
+                if (!response.IsSuccessStatusCode) throw new Exception($"OSSIndex Responeded with Error '{response.StatusCode}'");
+
                 var jsonResponse = response.Content.ReadAsStreamAsync().Result;
                 try
                 {
@@ -76,7 +80,9 @@ namespace NuGetDefense.OSSIndex
                 }
                 catch
                 {
+                    if (!response.IsSuccessStatusCode) throw;
                     using var ms = new MemoryStream();
+                    jsonResponse.Position = 0;
                     await jsonResponse.CopyToAsync(ms);
                     var str = "No response";
 
