@@ -40,7 +40,7 @@ namespace NuGetDefense.OSSIndex.Tests
         [Test]
         public void PackagesWithoutVulnerabilities()
         {
-            var scanner = new Scanner("somefile");
+            var scanner = new Scanner("somefile", true, username: "", passToken: "");
             var vulns = scanner.GetVulnerabilitiesForPackages(InvulnerablePackages);
             Assert.True(vulns.Count == 0);
         }

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -20,13 +20,18 @@ namespace NuGetDefense.OSSIndex
         private const string ResponseContentType = "application/vnd.ossindex.component-report.v1+json";
         private const string RequestContentType = "application/vnd.ossindex.component-report-request.v1+json";
         private readonly string UserAgentString;
+        private readonly string _apiToken = "";
+        private readonly string _userName = "";
 
 
-        public Scanner(string nugetFile, bool breakIfCannotRun = false, string userAgentString = @"NuGetDefense.OSSIndex/1.0.1.5 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)")
+        public Scanner(string nugetFile, bool breakIfCannotRun = false,
+            string userAgentString = @"NuGetDefense.OSSIndex/1.0.3 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",string passToken = "")
         {
             NugetFile = nugetFile;
             BreakIfCannotRun = breakIfCannotRun;
             UserAgentString = userAgentString;
+            _userName = username;
+            _apiToken = passToken;
         }
 
         private string NugetFile { get; }
@@ -44,6 +49,11 @@ namespace NuGetDefense.OSSIndex
                 client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgentString);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ResponseContentType));
+                if(!string.IsNullOrWhiteSpace(_userName) && !string.IsNullOrWhiteSpace(_apiToken)){
+                    var authToken = Encoding.ASCII.GetBytes($"{_userName}:{_apiToken}");
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                        Convert.ToBase64String(authToken));
+                }
                 var response =
                     await client.GetStringAsync(
                         $"https://ossindex.sonatype.org/api/v3/component-report/{pkg.PackageUrl}");
@@ -64,6 +74,11 @@ namespace NuGetDefense.OSSIndex
             client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgentString);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ResponseContentType));
+            if(!string.IsNullOrWhiteSpace(_userName) && !string.IsNullOrWhiteSpace(_apiToken)){
+                var authToken = Encoding.ASCII.GetBytes($"{_userName}:{_apiToken}");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                    Convert.ToBase64String(authToken));
+            }
             try
             {
                 var response = await client
