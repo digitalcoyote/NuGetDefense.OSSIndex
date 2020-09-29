@@ -25,7 +25,7 @@ namespace NuGetDefense.OSSIndex
 
 
         public Scanner(string nugetFile, bool breakIfCannotRun = false,
-            string userAgentString = @"NuGetDefense.OSSIndex/1.0.3 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",string passToken = "")
+            string userAgentString = @"NuGetDefense.OSSIndex/1.0.4 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",string passToken = "")
         {
             NugetFile = nugetFile;
             BreakIfCannotRun = breakIfCannotRun;
@@ -128,31 +128,35 @@ namespace NuGetDefense.OSSIndex
         /// <summary>
         ///     Gets Vulnerabilities for a set of NuGet Packages
         /// </summary>
-        /// <param name="pkgs"> Packages to Check</param>
+        /// <param name="pkgsChunk"> Packages to Check</param>
         /// <returns></returns>
         public Dictionary<string, Dictionary<string, Vulnerability>> GetVulnerabilitiesForPackages(
             NuGetPackage[] pkgs,
             Dictionary<string, Dictionary<string, Vulnerability>> vulnDict =
                 null)
         {
-            try
+            for (var i = 128; i - 128 < pkgs.Length; i += 128)
             {
-                var reports = GetReportsForPackagesAsync(pkgs).Result
-                    .Where(report => report.Vulnerabilities.Length > 0);
-                vulnDict ??= new Dictionary<string, Dictionary<string, Vulnerability>>();
-                foreach (var report in reports)
+                var pkgsChunk = pkgs.Skip(i - 128).Take(128).ToArray();   
+                try
                 {
-                    var pkgId = pkgs.First(p => p.PackageUrl == report.Coordinates).Id;
-                    if (!vulnDict.ContainsKey(pkgId)) vulnDict.Add(pkgId, new Dictionary<string, Vulnerability>());
-                    foreach (var vulnerability in report.Vulnerabilities)
-                        vulnDict[pkgId].Add(vulnerability.Cve ?? $"OSS Index ID: {vulnerability.Id}",
-                            vulnerability.ToVulnerability());
+                    var reports = GetReportsForPackagesAsync(pkgsChunk).Result
+                        .Where(report => report.Vulnerabilities.Length > 0);
+                    vulnDict ??= new Dictionary<string, Dictionary<string, Vulnerability>>();
+                    foreach (var report in reports)
+                    {
+                        var pkgId = pkgsChunk.First(p => p.PackageUrl == report.Coordinates).Id;
+                        if (!vulnDict.ContainsKey(pkgId)) vulnDict.Add(pkgId, new Dictionary<string, Vulnerability>());
+                        foreach (var vulnerability in report.Vulnerabilities)
+                            vulnDict[pkgId].Add(vulnerability.Cve ?? $"OSS Index ID: {vulnerability.Id}",
+                                vulnerability.ToVulnerability());
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(
-                    $"{NugetFile} : {(BreakIfCannotRun ? "Error" : "Warning")} : NuGetDefense : OSS Index scan failed with exception: {e}");
+                catch (Exception e)
+                {
+                    Console.WriteLine(
+                        $"{NugetFile} : {(BreakIfCannotRun ? "Error" : "Warning")} : NuGetDefense : OSS Index scan failed with exception: {e}");
+                }
             }
 
             return vulnDict;
