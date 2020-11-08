@@ -5,10 +5,17 @@
         <LangVersion>8</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <NuspecFile>NuGetDefense.OSSIndex.nuspec</NuspecFile>
+        <NuspecProperties>version=$(PackageVersion)</NuspecProperties>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+    
     <ItemGroup>
-      <PackageReference Include="NuGetDefense.Core" Version="1.0.7" />
+      <PackageReference Include="NuGetDefense.Core" Version="1.0.8" />
       <PackageReference Include="System.Text.Json" Version="4.7.2" />
     </ItemGroup>
 

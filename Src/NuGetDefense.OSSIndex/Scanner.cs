@@ -25,7 +25,7 @@ namespace NuGetDefense.OSSIndex
 
 
         public Scanner(string nugetFile, bool breakIfCannotRun = false,
-            string userAgentString = @"NuGetDefense.OSSIndex/1.0.5 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",string passToken = "")
+            string userAgentString = @"NuGetDefense.OSSIndex/1.0.6 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",string passToken = "")
         {
             NugetFile = nugetFile;
             BreakIfCannotRun = breakIfCannotRun;
