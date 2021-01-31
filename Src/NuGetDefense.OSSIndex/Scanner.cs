@@ -145,10 +145,10 @@ namespace NuGetDefense.OSSIndex
                     vulnDict ??= new Dictionary<string, Dictionary<string, Vulnerability>>();
                     foreach (var report in reports)
                     {
-                        var pkgId = pkgsChunk.First(p => p.PackageUrl == report.Coordinates).Id;
-                        if (!vulnDict.ContainsKey(pkgId)) vulnDict.Add(pkgId, new Dictionary<string, Vulnerability>());
+                        var pkgUrl = pkgsChunk.First(p => p.PackageUrl == report.Coordinates).PackageUrl.ToLower();
+                        if (!vulnDict.ContainsKey(pkgUrl)) vulnDict.Add(pkgUrl, new Dictionary<string, Vulnerability>());
                         foreach (var vulnerability in report.Vulnerabilities)
-                            vulnDict[pkgId].Add(vulnerability.Cve ?? $"OSS Index ID: {vulnerability.Id}",
+                            vulnDict[pkgUrl].Add(vulnerability.Cve ?? $"OSS Index ID: {vulnerability.Id}",
                                 vulnerability.ToVulnerability());
                     }
                 }

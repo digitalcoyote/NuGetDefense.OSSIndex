@@ -3,24 +3,30 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>9</LangVersion>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <NuspecFile>NuGetDefense.OSSIndex.nuspec</NuspecFile>
-        <NuspecProperties>version=$(PackageVersion)</NuspecProperties>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
+    <PropertyGroup>
+        <Authors>Curtis Carter</Authors>
+        <PackageId>NuGetDefense.OSSIndex</PackageId>
+        <Title>NuGetDefense.OSSIndex</Title>
+        <PackageProjectUrl>https://github.com/DigitalCoyote/NuGetDefense.OSSIndex</PackageProjectUrl>
+        <Description>Provides logic to scan packages using OSSIndex</Description>
+        <PackageReleaseNotes>https://github.com/digitalcoyote/NuGetDefense.OSSIndex/releases</PackageReleaseNotes>
+        <RepositoryUrl>https://github.com/digitalcoyote/NuGetDefense.OSSIndex.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Security</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>icon.png</PackageIcon>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\icon.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="NuGetDefense.Core" Version="2.0.0-pre0001" />
-      <PackageReference Include="System.Text.Json" Version="4.7.2" />
+      <PackageReference Include="NuGetDefense.Core" Version="2.0.1-pre0006" />
+      <PackageReference Include="System.Text.Json" Version="5.0.1" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="NuGetDefense.OSSIndex.nuspec" />
-    </ItemGroup>
-
 </Project>
