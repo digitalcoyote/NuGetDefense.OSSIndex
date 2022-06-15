@@ -16,6 +16,17 @@
         <PackageTags>Security</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>icon.png</PackageIcon>
+        <Version>2.0.4</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>NuGetDefense.OSSIndex</Title>
+        <Authors>Curtis Carter</Authors>
+        <PackageDescription>NuGetDefense.OSSIndex contains the OSS Index Rest Client/Scanning functionality from NuGetDefense.</PackageDescription>
+        <Copyright>Curtis Carter 2022</Copyright>
+        <Platforms>AnyCPU</Platforms>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\icon.png" Pack="true" PackagePath="\" />
@@ -26,7 +37,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="NuGetDefense.Core" Version="2.0.1.1" />
-      <PackageReference Include="System.Text.Json" Version="5.0.1" />
+      <PackageReference Include="NuGetDefense.Core" Version="2.0.3" />
+      <PackageReference Include="System.Text.Json" Version="6.0.5" />
     </ItemGroup>
 </Project>
