@@ -16,7 +16,7 @@
         <PackageTags>Security</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>icon.png</PackageIcon>
-        <Version>2.0.4</Version>
+        <Version>2.0.5</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>NuGetDefense.OSSIndex</Title>
         <Authors>Curtis Carter</Authors>
@@ -37,7 +37,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="NuGetDefense.Core" Version="2.0.3" />
-      <PackageReference Include="System.Text.Json" Version="6.0.5" />
+      <PackageReference Include="NuGetDefense.Core" Version="2.0.4" />
+      <PackageReference Include="System.Text.Json" Version="6.0.6" />
     </ItemGroup>
 </Project>
