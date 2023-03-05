@@ -3,6 +3,9 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10</LangVersion>
+        <Version>2.1.0</Version>
+        <AssemblyVersion>2.1.0</AssemblyVersion>
+        <FileVersion>2.1.0</FileVersion>
     </PropertyGroup>
     <PropertyGroup>
         <Authors>Curtis Carter</Authors>
@@ -16,9 +19,22 @@
         <PackageTags>Security</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>icon.png</PackageIcon>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>NuGetDefense.OSSIndex</Title>
+        <Authors>Curtis Carter</Authors>
+        <PackageDescription>NuGetDefense.OSSIndex contains the OSS Index Rest Client/Scanning functionality from NuGetDefense.</PackageDescription>
+        <Copyright>Curtis Carter 2022</Copyright>
+        <Platforms>AnyCPU</Platforms>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\icon.png" Pack="true" PackagePath="\"/>
+        <None Include="..\icon.png" Pack="true" PackagePath="\" />
+        <Content Include="..\..\README.md" Pack="true" PackagePath="\" >
+            <Link>README.md</Link>
+        </Content>
     </ItemGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -26,7 +42,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="NuGetDefense.Core" Version="2.0.5"/>
-        <PackageReference Include="System.Text.Json" Version="7.0.2"/>
+        <PackageReference Include="NuGetDefense.Core" Version="2.0.5" />
+        <PackageReference Include="System.Text.Json" Version="7.0.2" />
     </ItemGroup>
 </Project>
