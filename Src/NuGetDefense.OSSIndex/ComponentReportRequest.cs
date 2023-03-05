@@ -1,7 +1,6 @@
-namespace NuGetDefense.OSSIndex
+namespace NuGetDefense.OSSIndex;
+
+public class ComponentReportRequest
 {
-    public class ComponentReportRequest
-    {
-        public string[] coordinates { get; set; }
-    }
+    public string[] coordinates { get; set; }
 }

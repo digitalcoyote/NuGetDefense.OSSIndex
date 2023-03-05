@@ -1,24 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
 
-        <LangVersion>9</LangVersion>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="nunit" Version="3.13.1" />
+        <PackageReference Include="nunit" Version="3.13.1"/>
         <PackageReference Include="NUnit3TestAdapter" Version="3.17.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NuGetDefense.OSSIndex\NuGetDefense.OSSIndex.csproj" />
+        <ProjectReference Include="..\NuGetDefense.OSSIndex\NuGetDefense.OSSIndex.csproj"/>
     </ItemGroup>
 
 </Project>
