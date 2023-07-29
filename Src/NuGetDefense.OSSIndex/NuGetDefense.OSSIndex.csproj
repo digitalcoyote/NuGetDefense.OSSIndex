@@ -3,9 +3,9 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10</LangVersion>
-        <Version>2.1.0</Version>
-        <AssemblyVersion>2.1.0</AssemblyVersion>
-        <FileVersion>2.1.0</FileVersion>
+        <Version>2.1.1</Version>
+        <AssemblyVersion>2.1.1</AssemblyVersion>
+        <FileVersion>2.1.1</FileVersion>
     </PropertyGroup>
     <PropertyGroup>
         <Authors>Curtis Carter</Authors>
@@ -42,7 +42,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="NuGetDefense.Core" Version="2.0.5" />
-        <PackageReference Include="System.Text.Json" Version="7.0.2" />
+        <PackageReference Include="NuGetDefense.Core" Version="2.0.6" />
+        <PackageReference Include="System.Text.Json" Version="7.0.3" />
     </ItemGroup>
 </Project>
