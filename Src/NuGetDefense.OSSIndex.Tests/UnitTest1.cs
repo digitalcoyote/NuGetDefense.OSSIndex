@@ -4,7 +4,7 @@ namespace NuGetDefense.OSSIndex.Tests;
 
 public class Tests
 {
-    private readonly NuGetPackage[] InvulnerablePackages =
+    private readonly NuGetPackage[] _invulnerablePackages =
     {
         new()
         {
@@ -42,7 +42,7 @@ public class Tests
     public void PackagesWithoutVulnerabilities()
     {
         var scanner = new Scanner("somefile", true, username: "", passToken: "");
-        var vulns = scanner.GetVulnerabilitiesForPackages(InvulnerablePackages);
-        Assert.True(vulns.Count == 0);
+        var vulns = scanner.GetVulnerabilitiesForPackages(_invulnerablePackages);
+        Assert.That(vulns.Count == 0);
     }
 }

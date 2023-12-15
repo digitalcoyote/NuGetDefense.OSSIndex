@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>10</LangVersion>
-        <Version>2.1.1</Version>
-        <AssemblyVersion>2.1.1</AssemblyVersion>
-        <FileVersion>2.1.1</FileVersion>
+        <LangVersion>12</LangVersion>
+        <Version>2.1.2</Version>
+        <AssemblyVersion>2.1.2</AssemblyVersion>
+        <FileVersion>2.1.2</FileVersion>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup>
         <Authors>Curtis Carter</Authors>
@@ -29,6 +30,7 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\icon.png" Pack="true" PackagePath="\" />
@@ -42,7 +44,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="NuGetDefense.Core" Version="2.0.6" />
-        <PackageReference Include="System.Text.Json" Version="7.0.3" />
+        <PackageReference Include="NuGetDefense.Core" Version="2.0.7" />
+        <PackageReference Include="System.Text.Json" Version="8.0.0" />
     </ItemGroup>
 </Project>
