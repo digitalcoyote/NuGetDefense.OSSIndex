@@ -5,7 +5,7 @@ namespace NuGetDefense.OSSIndex.Tests;
 public class Tests
 {
     private readonly NuGetPackage[] _invulnerablePackages =
-    {
+    [
         new()
         {
             Id = "System.Text.Json",
@@ -31,7 +31,7 @@ public class Tests
             Id = "Microsoft.AspNetCore.Blazor.DevServer",
             Version = "3.0.0-preview9.19465.2"
         }
-    };
+    ];
 
     [SetUp]
     public void Setup()
