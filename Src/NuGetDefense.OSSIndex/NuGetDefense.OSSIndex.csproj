@@ -45,6 +45,6 @@
 
     <ItemGroup>
         <PackageReference Include="NuGetDefense.Core" Version="2.0.13.1" />
-        <PackageReference Include="System.Text.Json" Version="8.0.3" />
+        <PackageReference Include="System.Text.Json" Version="8.0.4" />
     </ItemGroup>
 </Project>
