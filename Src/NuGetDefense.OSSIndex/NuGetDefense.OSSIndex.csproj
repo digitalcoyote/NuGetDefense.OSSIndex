@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <LangVersion>12</LangVersion>
-        <Version>2.1.4.1</Version>
-        <AssemblyVersion>2.1.4.1</AssemblyVersion>
-        <FileVersion>2.1.4.1</FileVersion>
+        <Version>2.1.4.2</Version>
+        <AssemblyVersion>2.1.4.2</AssemblyVersion>
+        <FileVersion>2.1.4.2</FileVersion>
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <Nullable>enable</Nullable>
     </PropertyGroup>
