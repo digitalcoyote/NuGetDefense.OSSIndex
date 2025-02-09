@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <LangVersion>12</LangVersion>
-        <Version>2.1.4.2</Version>
-        <AssemblyVersion>2.1.4.2</AssemblyVersion>
-        <FileVersion>2.1.4.2</FileVersion>
-        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <Version>2.1.4.3</Version>
+        <AssemblyVersion>2.1.4.3</AssemblyVersion>
+        <FileVersion>2.1.4.3</FileVersion>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup>
@@ -44,7 +44,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="NuGetDefense.Core" Version="2.0.13.3" />
-        <PackageReference Include="System.Text.Json" Version="8.0.5" />
+        <PackageReference Include="NuGetDefense.Core" Version="2.0.13.4" />
+        <PackageReference Include="System.Text.Json" Version="9.0.1" />
     </ItemGroup>
 </Project>
