@@ -23,7 +23,7 @@ public class Scanner
 
 
     public Scanner(string nugetFile, bool breakIfCannotRun = false,
-        string userAgentString = @"NuGetDefense.OSSIndex/2.1.4.3 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",
+        string userAgentString = @"NuGetDefense.OSSIndex/2.1.4.4 (https://github.com/digitalcoyote/NuGetDefense.OSSIndex/blob/master/README.md)", string username = "",
         string passToken = "")
     {
         NugetFile = nugetFile;
